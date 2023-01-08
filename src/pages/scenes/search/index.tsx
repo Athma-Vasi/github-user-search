@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import type { ApiResponse } from "../../../types/typings";
-import type { NextPage } from "next";
 
 import { Octokit } from "@octokit/core";
 import React, { useEffect, useState } from "react";
@@ -14,7 +13,7 @@ import { GrTwitter } from "react-icons/gr";
 
 import { useWindowSize } from "../../../hooks/useWindowSize";
 
-const Search: NextPage = () => {
+const Search = () => {
   const [userData, setUserData] = useState<ApiResponse[] | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const windowSize = useWindowSize();
@@ -53,7 +52,7 @@ const Search: NextPage = () => {
   }
 
   return (
-    <Container $dark={true}>
+    <Container $theme="dark">
       <div className="mb-48 xs:w-full sm:w-[62%] md:w-[62%]">
         {/* heading */}
         <nav className="flex w-full flex-row items-center justify-between py-4 xs:text-lg sm:text-xl md:text-2xl">
