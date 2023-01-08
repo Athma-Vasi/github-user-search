@@ -11,11 +11,7 @@ const Home: NextPage = () => {
     themeState: {},
   };
 
-  return (
-    <div>
-      <Search />
-    </div>
-  );
+  return <Search />;
 };
 
 export default Home;

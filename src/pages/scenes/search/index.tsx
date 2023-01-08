@@ -3,7 +3,7 @@ import type { ApiResponse } from "../../../types/typings";
 import type { NextPage } from "next";
 
 import { Octokit } from "@octokit/core";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "../../../styledTwComponents/Container";
 import { HiSun } from "react-icons/hi2";
 import { BiSearch } from "react-icons/bi";
@@ -16,32 +16,45 @@ import { useWindowSize } from "../../../hooks/useWindowSize";
 
 const Search: NextPage = () => {
   const [userData, setUserData] = useState<ApiResponse[] | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
   const windowSize = useWindowSize();
   const { width = 0 } = windowSize;
 
   useEffect(() => {
+    //key valid till Jan 07, 2024
     const octokit = new Octokit({
       auth: process.env.NEXT_PUBLIC_API_KEY,
     });
 
     const fetchData = async () => {
       try {
-        const response = await octokit.request("GET /users/srid", {
-          username: "Athma-Vasi",
-        });
+        if (searchTerm !== "") {
+          const response = await octokit.request(`GET /users/${searchTerm}`, {
+            username: "Athma-Vasi",
+          });
 
-        setUserData([response] as ApiResponse[]);
+          setUserData([response] as ApiResponse[]);
+        }
       } catch (error) {
         console.error(error);
       }
     };
 
     void fetchData();
-  }, []);
+  }, [searchTerm]);
+
+  function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const search = formData.get("search")?.toString() ?? "";
+
+    setSearchTerm(search);
+  }
 
   return (
     <Container $dark={true}>
-      <div className="mb-16  xs:w-full sm:w-3/5">
+      <div className="mb-48 xs:w-full sm:w-[62%] md:w-[62%]">
         {/* heading */}
         <nav className="flex w-full flex-row items-center justify-between py-4 xs:text-lg sm:text-xl md:text-2xl">
           {/* title */}
@@ -57,7 +70,7 @@ const Search: NextPage = () => {
 
         {/* search input */}
         <section className="relative mt-4 mb-6 w-full ">
-          <form action="#">
+          <form action="#" onSubmit={handleFormSubmit}>
             {/* search icon */}
             <BiSearch className="absolute top-0 left-0 m-2 text-myBrightBlue xs:h-[40px] xs:text-xl sm:h-[40px] sm:text-xl md:h-[50px] md:text-2xl lg:text-3xl" />
             {/* input */}
@@ -69,7 +82,7 @@ const Search: NextPage = () => {
               placeholder={
                 width < 768 ? "search github ..." : "search github username"
               }
-              className="my-auto w-full text-ellipsis rounded-lg bg-myLightBlue px-12 xs:h-14 xs:text-lg sm:h-14 sm:text-lg md:h-[66px] md:text-xl lg:text-2xl"
+              className="my-auto w-full text-ellipsis rounded-lg bg-myLightBlue px-12 focus:border-myBrightBlue focus:outline-none focus:ring focus:ring-myBrightBlue focus:ring-opacity-50 xs:h-14 xs:text-lg sm:h-14 sm:text-lg md:h-[66px] md:text-xl lg:text-2xl"
             />
             <button
               type="submit"
@@ -116,15 +129,15 @@ const Search: NextPage = () => {
                   <div
                     className={`flex w-[62%] flex-col items-start justify-between  h-[${
                       width < 768 ? 100 : width < 1060 ? 150 : 200
-                    }px] sm:gap-y-4 md:gap-y-6`}
+                    }px] xs:gap-y-2 sm:gap-y-4 md:gap-y-6 lg:gap-y-6`}
                   >
-                    <h2 className="font-bold xs:text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                    <h2 className="font-bold xs:text-xl sm:text-2xl md:text-2xl lg:text-3xl">
                       {!name ? "not available" : name}
                     </h2>
                     <h3 className="text-myBrightBlue xs:text-lg sm:text-xl md:text-2xl lg:text-2xl">
                       {!login ? "not available" : `@${login}`}
                     </h3>
-                    <h4 className="text-myGrey xs:text-lg sm:text-xl md:text-2xl lg:text-2xl">
+                    <h4 className="text-myGrey xs:text-base sm:text-lg md:text-2xl lg:text-2xl">
                       {!created_at
                         ? "not available"
                         : `Joined ${new Date(created_at)
@@ -187,9 +200,18 @@ const Search: NextPage = () => {
                   {/* blog */}
                   <div className="flex flex-row items-center justify-start gap-x-4">
                     <BiLink className="text-myWhite xs:text-lg sm:text-xl md:text-2xl lg:text-2xl" />
-                    <h2 className=" text-myGrey xs:text-lg sm:text-xl md:text-2xl lg:text-2xl">
-                      {!blog ? "not available" : blog}
-                    </h2>
+
+                    {!blog || blog === "" ? (
+                      <h2 className=" text-myGrey xs:text-lg sm:text-xl md:text-2xl lg:text-2xl">
+                        {!blog || blog === "" ? "not available" : blog}
+                      </h2>
+                    ) : (
+                      <a href={blog}>
+                        <h2 className=" text-myGrey xs:text-lg sm:text-xl md:text-2xl lg:text-2xl">
+                          {!blog || blog === "" ? "not available" : blog}
+                        </h2>
+                      </a>
+                    )}
                   </div>
                   {/* twitter username*/}
                   <div className="flex flex-row items-center justify-start gap-x-4">
