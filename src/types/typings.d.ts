@@ -36,8 +36,8 @@ export interface Data {
   public_gists: number;
   followers: number;
   following: number;
-  created_at: string;
-  updated_at: string;
+  created_at: Date;
+  updated_at: Date;
   private_gists: number;
   total_private_repos: number;
   owned_private_repos: number;

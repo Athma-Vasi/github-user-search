@@ -10,6 +10,15 @@ module.exports = {
         myWhite: "#fcfcfc",
         myGrey: "#c1c4cb",
       },
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+      },
+    },
+    screens: {
+      xs: "350px",
+      sm: "768px",
+      md: "1060px",
+      lg: "1440px",
     },
   },
   plugins: [],
