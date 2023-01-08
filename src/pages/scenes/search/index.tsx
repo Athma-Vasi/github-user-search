@@ -50,9 +50,7 @@ const Search: NextPage = () => {
           </h1>
           {/* theme */}
           <div className="flex flex-row items-center justify-between gap-x-6 text-xl">
-            <p className="xs:text-lg sm:text-xl md:text-2xl lg:text-2xl">
-              DARK
-            </p>
+            <p className="xs:text-lg sm:text-xl md:text-2xl lg:text-xl">DARK</p>
             <HiSun className="cursor-pointer xs:text-2xl sm:text-2xl md:text-3xl lg:text-4xl" />
           </div>
         </nav>
