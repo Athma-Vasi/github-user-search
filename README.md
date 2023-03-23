@@ -1,28 +1,40 @@
-# Create T3 App
+# Github User Search App
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This is a simple app that allows you to search for users on Github. It uses the Github API (using octokit) to fetch the user and display their publicly available information, such as their name, bio, location, and avatar, followers, and following count. There is also a theme toggle button that allows you to switch between light and dark mode.
 
-## What's next? How do I make an app with this?
+[Click here to view live project](https://github-user-search-black.vercel.app/)
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+#### Screenshot
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+<div align="center">
+  <img src="./src/assets/dark-torvalds.png" alt='screenshot of linus torvalds in dark mode' width="125px" />
+  <img src="./src/assets/light-torvalds.png" alt='screenshot of linus torvalds in light mode' width="125px" />
+</div>
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+#### Technologies Used
 
-## Learn More
+- [Create-T3-App](https://create-t3-app-docs.vercel.app/en/introduction)
+- [TypeScript](https://www.typescriptlang.org/)
+- [React](https://react.dev/)
+- [NextJS](https://nextjs.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Octokit](https://octokit.github.io/rest.js/v18)
+- [tailwind-styled-components](https://www.npmjs.com/package/tailwind-styled-components)
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+This is a challenge from [Frontend Mentor](https://www.frontendmentor.io/challenges/github-user-search-app-Q09YOgaH6).
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+**Here is the challenge brief**
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+Your challenge is to build out this GitHub user search app using the GitHub users API and get it looking as close to the design as possible.
 
-## How do I deploy this?
+You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+Your users should be able to:
+
+- View the optimal layout for the app depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Search for GitHub users by their username
+- See relevant user information based on their search
+- Switch between light and dark themes
+
+Download the project and go through the README.md file. This will provide further details about the project and help you get set up.
